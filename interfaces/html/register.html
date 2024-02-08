@@ -1,0 +1,66 @@
+<!-- register.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/interfaces/images/logo.png" type="image/x-icon">
+  <title>Sorteio Turbo | Cadastro</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+    body {
+      background: linear-gradient(45deg, #000000, #ffffff);
+      font-family: "poppins", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body class="text-center">
+
+  <main class="form-signin">
+    <img
+        src="/interfaces/images/logo-sorteio-turbo.png"
+        style="width: 175px; position: absolute; top: 0rem; left: 2rem;"
+        alt="Sorteio Turbo Logo"
+    />
+    <div class="card" style="width: 22rem; padding: 2rem; background-color: #000000; border-radius: 1.75rem;">
+      <div class="card-body">
+        <form id="registerForm">
+          <h1 class="h3 mb-3 fw-normal" style="color: #00ff03">Criar Conta</h1>
+
+          <div class="mb-3">
+            <input type="email" id="registerEmail" class="form-control" placeholder="Email" required>
+          </div>
+
+          <div class="mb-3">
+            <input type="password" id="registerPassword" class="form-control" placeholder="Senha" required>
+          </div>
+
+          <div class="mb-3">
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirmar Senha" required>
+          </div>
+
+          <button class="w-100 btn btn-lg" style="background-color: #00ff03; color: #000000;" type="submit">Registrar</button>
+
+          <a href="login.html" class="btn" style="color: #00ff03; font-size: 14px; margin-top: 8px;">Voltar para Login</a>
+        </form>
+        <div id="responseMessageCadastro" style="font-size: 14px; color: #b1b1b1;"></div>
+      </div>
+    </div>
+    <div style="margin-top: 20px">
+      <a href="#" style="font-size: 14px; color: #ffffff">Termos e Condições</a>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/interfaces/js/register.js" type="module"></script>
+  
+</body>
+</html>
