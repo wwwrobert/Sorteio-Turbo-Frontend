@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const treinosList = document.getElementById("treinos-list");
     const userId = urlParams.get("userId");
+    const token = localStorage.getItem('token');
+
+    if (!userId || !token) {
+        window.location.href = "login.html";
+    }
 
     try {
         const response = await fetch(`${Url}/auth/getTraining/${userId}`); 
