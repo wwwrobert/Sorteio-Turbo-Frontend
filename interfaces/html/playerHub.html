@@ -27,7 +27,7 @@
           max-width: 375px;
         }
         #numberOfTeams {
-          max-width: 200px; /* Ajusta a largura máxima do input */
+          max-width: 204px; /* Ajusta a largura máxima do input */
         }
     </style>
 </head>
@@ -88,7 +88,7 @@
                             <input type="text" class="form-control" id="nome" required />
                         </div>
                         <div class="mb-3">
-                            <label for="nivel" class="form-label" style="color: #000000;">Nível do Jogador</label>
+                            <label for="nivel" class="form-label" style="color: #000000;">Nível do Jogador (de 1 a 5)</label>
                             <input type="number" class="form-control" id="nivel" step="1" max="5" min="0" required />
                         </div>
                         <div class="mb-3" style="color: #000000;" id="responseMessageAdicionar"></div>
@@ -114,7 +114,30 @@
             </div>
         </div>
     </div>
-
+    <!-- Modal para editar o nível do jogador -->
+    <div class="modal fade" id="editarNivelModal" tabindex="-1" aria-labelledby="editarNivelModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editarNivelModalLabel">Editar Nível do Jogador</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editarNivelForm">
+              <div class="mb-3">
+                <label for="novoNivel" class="form-label">Novo Nível:</label>
+                <input type="number" class="form-control" id="novoNivel" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="salvarNivelBtn">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="/interfaces/js/playerHub.js"></script>
 </body>

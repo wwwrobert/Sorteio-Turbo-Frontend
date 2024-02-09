@@ -46,9 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
   closeModalButton.addEventListener("click", function () {
     window.location.reload();
   });
-  
+
   // Sortear Times ================================================================================
 
+  // Sortear Times
   const sortearTimesForm = document.getElementById("sortearTimesForm");
   sortearTimesForm.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -66,25 +67,43 @@ document.addEventListener("DOMContentLoaded", function () {
       }),
     });
 
-    const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
 
-    const timesList = document.getElementById("timesList");
-    timesList.innerHTML = "";
+      const timesList = document.getElementById("timesList");
+      timesList.innerHTML = "";
 
-    data.times.forEach((time, index) => {
-      const listItem = document.createElement("li");
-      listItem.className = "list-group-item";
-      listItem.textContent = `Time ${index + 1}: ${time
-        .map((jogador) => `${jogador.nome}`)
-        .join(" / ")}`;
-      timesList.appendChild(listItem);
-    });
+      data.times.forEach((time, index) => {
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        
+        // Ordena os jogadores com base no nível (do maior para o menor)
+        time.sort((a, b) => b.nivel - a.nivel);
+      
+        // Cria um parágrafo para cada jogador e adiciona ao item da lista
+        time.forEach((jogador) => {
+          const playerParagraph = document.createElement("p");
+          playerParagraph.textContent = jogador.nome;
+          listItem.appendChild(playerParagraph);
+        });
+        
+        // Define o título do time
+        const title = document.createElement("h4");
+        title.textContent = `Time ${index + 1}:`;
+        listItem.insertBefore(title, listItem.firstChild);
+        
+        timesList.appendChild(listItem);
+      });
 
-    // Abre o modal com os times sorteados
-    const modal = new bootstrap.Modal(
-      document.getElementById("timesSorteadosModal")
-    );
-    modal.show();
+      // Abre o modal com os times sorteados
+      const modal = new bootstrap.Modal(
+        document.getElementById("timesSorteadosModal")
+      );
+      modal.show();
+    } else {
+      const errorData = await response.json();
+      alert(errorData.error); // Exibe a mensagem de erro retornada pelo servidor
+    }
   });
 
   // Evento de clique para fechar o modal
@@ -132,20 +151,67 @@ document.addEventListener("DOMContentLoaded", async function () {
         button.addEventListener("click", async () => {
           const playerId = button.getAttribute("data-id");
           try {
-            // Requisição DELETE para excluir o jogador
-            // console.log(treinoId, playerId)
-            const deleteResponse = await fetch(`${Url}/auth/deletePlayer/${treinoId}/${playerId}`, {
-              method: "DELETE",
-            });
+            const deleteResponse = await fetch(
+              `${Url}/auth/deletePlayer/${treinoId}/${playerId}`,
+              {
+                method: "DELETE",
+              }
+            );
             if (deleteResponse.ok) {
-              // Atualizar a lista de jogadores após a exclusão
               loadPlayers();
             } else {
-              console.error("Erro ao excluir jogador:", deleteResponse.statusText);
+              console.error(
+                "Erro ao excluir jogador:",
+                deleteResponse.statusText
+              );
             }
           } catch (error) {
             console.error("Erro ao excluir jogador:", error);
           }
+        });
+      });
+
+      // Adicionar evento de clique para os botões de edição
+      const editButtons = document.querySelectorAll(".edit-player-btn");
+      editButtons.forEach((button) => {
+        button.addEventListener("click", async () => {
+          const playerId = button.getAttribute("data-id");
+          const modal = new bootstrap.Modal(
+            document.getElementById("editarNivelModal")
+          );
+          modal.show();
+
+          const salvarNivelBtn = document.getElementById("salvarNivelBtn");
+          salvarNivelBtn.addEventListener("click", async () => {
+            const novoNivel = parseFloat(
+              document.getElementById("novoNivel").value
+            );
+            try {
+              const updateResponse = await fetch(
+                `${Url}/auth/updatePlayer/${treinoId}/${playerId}`,
+                {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ nivel: novoNivel }),
+                }
+              );
+              if (updateResponse.ok) {
+                modal.hide();
+
+                window.location.reload();
+                loadPlayers();
+              } else {
+                console.error(
+                  "Erro ao atualizar jogador:",
+                  updateResponse.statusText
+                );
+              }
+            } catch (error) {
+              console.error("Erro ao atualizar jogador:", error);
+            }
+          });
         });
       });
     } catch (error) {
@@ -154,4 +220,3 @@ document.addEventListener("DOMContentLoaded", async function () {
   };
   loadPlayers();
 });
-

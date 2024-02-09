@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <td>${treinos.dia}</td>
                 <td>${treinos.hora}</td>
                 <td>
-                    <button class="btn delete-treino" data-treino-id="${treinos.id}"><img src="/interfaces/images/excluir.png" style="width: 16px;"></button>
-                    <button class="btn view-players" data-treino-id="${treinos.id}"><img src="/interfaces/images/visualizar.png" style="width: 16px;"></button>
+                    <button class="btn delete-treino" data-treino-id="${treinos.id}"><img src="/interfaces/images/excluir.png" style="width: 14px;"></button>
+                    <button class="btn view-players" data-treino-id="${treinos.id}"><img src="/interfaces/images/visualizar.png" style="width: 14px;"></button>
                 </td>
             `;
             treinosList.appendChild(row);
