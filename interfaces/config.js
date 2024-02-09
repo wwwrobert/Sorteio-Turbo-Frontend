@@ -1,5 +1,5 @@
-const Url = 'http://localhost:3000'; 
+const Url = 'sorteio-turbo-backend.vercel.app'; 
 
 // http://localhost:3000
-// https://sorteio-turbo-backend.onrender.com
+// sorteio-turbo-backend.vercel.app
 export { Url };
