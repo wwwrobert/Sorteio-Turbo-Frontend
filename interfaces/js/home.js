@@ -2,12 +2,8 @@ import { Url } from "../config.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const formTreino = document.getElementById("criarTreinoForm");
-  const formCampeonato = document.getElementById("criarCampeonatoForm");
   const responseMessageTreino = document.getElementById(
     "responseMessageAdicionar"
-  );
-  const responseMessageCampeonato = document.getElementById(
-    "response-message-sortear"
   );
   const userId = new URLSearchParams(window.location.search).get("userId");
   const token = localStorage.getItem("token");
