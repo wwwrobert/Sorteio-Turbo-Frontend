@@ -48,8 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Sortear Times ================================================================================
-
-  // Sortear Times
   const sortearTimesForm = document.getElementById("sortearTimesForm");
   sortearTimesForm.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -95,6 +93,25 @@ document.addEventListener("DOMContentLoaded", function () {
         timesList.appendChild(listItem);
       });
 
+      const compartilharTimesBtn = document.getElementById("compartilharTimesBtn");
+      compartilharTimesBtn.addEventListener("click", function () {
+        // Captura o conteúdo do modal
+        html2canvas(document.getElementById("timesSorteadosModal"), {
+            onrendered: function (canvas) {
+                // Converte o canvas para uma imagem base64
+                const imageData = canvas.toDataURL("image/png");
+
+                // Codifica a imagem base64 para que possa ser enviada como parâmetro na URL
+                const encodedImageData = encodeURIComponent(imageData);
+
+                // Cria o link para compartilhar no WhatsApp com a imagem anexada
+                const whatsappShareUrl = `whatsapp://send?text=Times%20Sorteados&attachment=${encodedImageData}`;
+
+                // Abre o aplicativo WhatsApp para compartilhar a imagem
+                window.location.href = whatsappShareUrl;
+            }
+        });
+      });
       // Abre o modal com os times sorteados
       const modal = new bootstrap.Modal(
         document.getElementById("timesSorteadosModal")

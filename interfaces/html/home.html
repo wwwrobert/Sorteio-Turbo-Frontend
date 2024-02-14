@@ -22,17 +22,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
       }
     </style>
   </head>
   <body>
     <img
         src="/interfaces/images/logo-sorteio-turbo.png"
-        style="width: 170px; position: absolute; top: 0rem;"
+        style="width: 175px; position: absolute; top: 0rem;"
         alt="Sorteio Turbo Logo"
     />
-    <div class="container mt-5">
-      <div class="row">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
         <div class="col-md-6" >
           <h2 style="color: #ffffff" >Criar Treino(Baba)</h2>
           <form id="criarTreinoForm">
@@ -58,32 +59,12 @@
               <input type="time" class="form-control" id="horaTreino" step="1800" required />
             </div>
             <div class="mb-3" style="color: #ffffff;" id="responseMessageAdicionar"></div>
-            <button type="submit" class="btn" style="background-color: #048d04; color: #ffffff; margin-bottom: 50px;">
+            <button type="submit" class="btn" style="background-color: #048d04; color: #ffffff; margin-bottom: 40px;">
               Criar Treino
             </button>
-            <button type="button" class="btn" id="btn-view" style="background-color: #048d04; color: #ffffff; margin-bottom: 50px;">
-              Ver meus treinos
+            <button type="button" class="btn" id="btn-view" style="background-color: #048d04; color: #ffffff; margin-bottom: 40px;">
+              Ver Meus Treinos
             </button>
-          </form>
-        </div>
-        <div class="col-md-6">
-          <h2 style="color: #ffffff" >Criar Campeonato</h2>
-          <form id="criarCampeonatoForm">
-            <div class="mb-2">
-              <label for="nome" class="form-label" style="color: #ffffff">Nome do Campeonato</label>
-              <input type="text" class="form-control" id="nomeCampeonato" required />
-            </div>
-            <div class="mb-2">
-              <label for="quantidadeTimes" class="form-label" style="color: #ffffff">Quantidade de Times</label>
-              <select class="form-select" id="quantidadeTimes" required>
-                <option value="4">4 Times</option>
-                <option value="8">8 Times</option>
-                <option value="16">16 Times</option>
-                <option value="32">32 Times</option>
-              </select>
-            </div>
-            <div class="mb-3" style="color: #ffffff;" id="response-message-sortear"></div>
-            <button type="submit" class="btn btn-success">Criar</button>
           </form>
         </div>
       </div>
