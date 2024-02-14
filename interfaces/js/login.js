@@ -25,20 +25,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (data.token) {
       const userId = data.userId;
-
-      // Armazenar o token no localStorage
+    
       localStorage.setItem("token", data.token);
 
-      // Redirecionar para a página home.html com o parâmetro userId
       window.location.href = `home.html?userId=${userId}`;
-    } else {
-      responseMessage.innerHTML = `<p>${data.msg}</p>`;
-
-      const displayTime = 2000;
-
-      setTimeout(() => {
-        responseMessage.innerHTML = "";
-      }, displayTime);
-    }
+    } 
   });
 });
