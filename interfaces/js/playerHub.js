@@ -98,17 +98,14 @@ document.addEventListener("DOMContentLoaded", function () {
         // Captura o conteúdo do modal
         html2canvas(document.getElementById("timesSorteadosModal"), {
             onrendered: function (canvas) {
-                // Converte o canvas para uma imagem base64
-                const imageData = canvas.toDataURL("image/png");
+                // Cria uma URL da imagem capturada
+                const imgData = canvas.toDataURL("image/png");
 
-                // Codifica a imagem base64 para que possa ser enviada como parâmetro na URL
-                const encodedImageData = encodeURIComponent(imageData);
-
-                // Cria o link para compartilhar no WhatsApp com a imagem anexada
-                const whatsappShareUrl = `whatsapp://send?text=Times%20Sorteados&attachment=${encodedImageData}`;
-
-                // Abre o aplicativo WhatsApp para compartilhar a imagem
-                window.location.href = whatsappShareUrl;
+                // Cria um link para download da imagem
+                const link = document.createElement("a");
+                link.href = imgData;
+                link.download = "times_sorteados.png";
+                link.click();
             }
         });
       });
