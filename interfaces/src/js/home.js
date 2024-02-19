@@ -1,4 +1,4 @@
-import { Url } from "../config.js";
+import { Url } from "./config.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const formTreino = document.getElementById("criarTreinoForm");

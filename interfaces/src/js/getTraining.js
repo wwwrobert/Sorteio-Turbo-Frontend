@@ -1,4 +1,4 @@
-import { Url } from "../config.js";
+import { Url } from "./config.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const urlParams = new URLSearchParams(window.location.search);
