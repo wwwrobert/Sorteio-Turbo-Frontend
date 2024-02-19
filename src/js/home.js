@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
 
   if (!userId || !token) {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   }
 
   const btnView = document.getElementById("btn-view");

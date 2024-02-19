@@ -35,7 +35,11 @@
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4 players-table mt-3">  
-                <h2 style="color: #ffffff;">JOGADORES</h2>
+                <h2 style="color: #ffffff;" class="d-flex align-items-center">JOGADORES 
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#duvidaModal">
+                        <img src="./assets/dúvida.png" alt="duvida" style="width: 25px;">
+                    </button>
+                </h2>
                 <div style="max-height: 325px; overflow-y: auto;">
                     <table class="table table-bordered border-radius-custom players-table" id="players-table">
                         <thead>
@@ -72,6 +76,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal para adicionar jogador -->
     <div class="modal fade" id="adicionarJogadorModal" tabindex="-1" aria-labelledby="adicionarJogadorModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -139,6 +144,22 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Modal para dúvida -->
+    <div class="modal fade" id="duvidaModal" tabindex="-1" aria-labelledby="duvidaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="duvidaModalLabel">Dúvida</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Adicione jogadores de acordo com o nível que cada um joga. Os níveis vão de 1 a 5, sendo o nível 1 o menor e o nível
+                    5 o maior. O sorteio é feito de forma equilibrada de acordo com os níveis, ou seja, as equipes vão ficar bem equilibradas!
+                </div>
+            </div>
+        </div>
     </div>
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
