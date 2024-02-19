@@ -1,4 +1,4 @@
-import { Url } from "./config.js";
+import { Url } from "./configs/config.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const formCadastro = document.getElementById("registerForm");

@@ -1,4 +1,4 @@
-import { Url } from "./config.js";
+import { Url } from "./configs/config.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const formAdicionar = document.getElementById("adicionarJogadorForm");
@@ -150,10 +150,10 @@ document.addEventListener("DOMContentLoaded", async function () {
           <td>${jogador.nivel}</td>
           <td>
             <button class="btn edit-player-btn" data-id="${jogador.id}">
-              <img src="/interfaces/images/editar-b.png" style="width: 14px;">
+              <img src="./assets/editar-b.png" style="width: 14px;">
             </button>
             <button class="btn delete-player-btn" data-id="${jogador.id}">
-              <img src="/interfaces/images/excluir-b.png" style="width: 14px;">
+              <img src="./assets/excluir-b.png" style="width: 14px;">
             </button>
           </td>
         `;

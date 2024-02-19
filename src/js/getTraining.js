@@ -1,4 +1,4 @@
-import { Url } from "./config.js";
+import { Url } from "./configs/config.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const urlParams = new URLSearchParams(window.location.search);
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <td>${treinos.dia}</td>
                 <td>${treinos.hora}</td>
                 <td>
-                    <button class="btn delete-treino" data-treino-id="${treinos.id}"><img src="/interfaces/images/excluir.png" style="width: 14px;"></button>
-                    <button class="btn view-players" data-treino-id="${treinos.id}"><img src="/interfaces/images/visualizar.png" style="width: 14px;"></button>
+                    <button class="btn delete-treino" data-treino-id="${treinos.id}"><img src="./assets/excluir.png" style="width: 14px;"></button>
+                    <button class="btn view-players" data-treino-id="${treinos.id}"><img src="./assets/visualizar.png" style="width: 14px;"></button>
                 </td>
             `;
             treinosList.appendChild(row);
