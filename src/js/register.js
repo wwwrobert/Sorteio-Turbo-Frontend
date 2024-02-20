@@ -46,8 +46,13 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       responseMessageCadastro.innerHTML = "";
 
-      if (data.msg === "Usuário criado com sucesso") {
+      if (data.token) {
         const userId = data.userId;
+        
+        // Armazenar o token no localStorage
+        localStorage.setItem("token", data.token);
+
+        // Redirecionar para a página home.html com o parâmetro userId
         window.location.href = `home.html?userId=${userId}`;
       }
     }, displayTime);
