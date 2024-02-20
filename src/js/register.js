@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Armazenar o token no localStorage
         localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", userId);
 
         // Redirecionar para a página home.html com o parâmetro userId
         window.location.href = `home.html?userId=${userId}`;
