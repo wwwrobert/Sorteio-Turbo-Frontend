@@ -17,11 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const nomeInput = document.getElementById("nome");
     const nivelInput = document.getElementById("nivel");
-    console.log(nomeInput, nivelInput);
 
     const nome = nomeInput.value;
     const nivel = parseFloat(nivelInput.value);
-    console.log(nome, nivel);
 
     const response = await fetch(`${Url}/auth/adicionar-jogador/${treinoId}`, {
       method: "POST",
