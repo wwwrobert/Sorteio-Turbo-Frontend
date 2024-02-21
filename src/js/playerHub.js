@@ -143,22 +143,28 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       playersTable.innerHTML = "";
 
-      playersData.forEach((jogador) => {
+      if (playersData.length === 0) {
         const row = playersTable.insertRow();
-        row.innerHTML = `
-          <td>${jogador.nome}</td>
-          <td>${jogador.nivel}</td>
-          <td>
-            <button class="btn edit-player-btn" data-id="${jogador.id}">
-              <img src="./assets/editar-b.png" style="width: 14px;">
-            </button>
-            <button class="btn delete-player-btn" data-id="${jogador.id}">
-              <img src="./assets/excluir-b.png" style="width: 14px;">
-            </button>
-          </td>
-        `;
-      });
-
+        const cell = row.insertCell();
+        cell.colSpan = 3;
+        cell.textContent = "Clique em 'Adicionar Jogador' para colocar jogadores na lista.";
+      } else {
+        playersData.forEach((jogador) => {
+          const row = playersTable.insertRow();
+          row.innerHTML = `
+            <td>${jogador.nome}</td>
+            <td>${jogador.nivel}</td>
+            <td>
+              <button class="btn edit-player-btn" data-id="${jogador.id}">
+                <img src="./assets/editar-b.png" style="width: 14px;">
+              </button>
+              <button class="btn delete-player-btn" data-id="${jogador.id}">
+                <img src="./assets/excluir-b.png" style="width: 14px;">
+              </button>
+            </td>
+          `;
+        });
+      }
       // Adicionar evento de clique para os botões de exclusão
       const deleteButtons = document.querySelectorAll(".delete-player-btn");
       deleteButtons.forEach((button) => {
