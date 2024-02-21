@@ -12,8 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!treinoId || !token) {
     window.location.href = "login.html";
   }
+
   formAdicionar.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    // Desabilita o botão de adicionar jogador para evitar cliques repetidos
+    formAdicionar.querySelector("button[type='submit']").disabled = true;
 
     const nomeInput = document.getElementById("nome");
     const nivelInput = document.getElementById("nivel");
@@ -35,13 +39,16 @@ document.addEventListener("DOMContentLoaded", function () {
       responseMessageAdicionar.innerHTML = `<p>${data.message}</p>`;
     }
 
-    // Limpe os campos do formulário após 2 segundos
+    // Limpa os campos do formulário após 2 segundos
     setTimeout(function () {
       nomeInput.value = "";
       nivelInput.value = "";
       responseMessageAdicionar.innerHTML = "";
+      // Reabilita o botão de adicionar jogador após a conclusão da operação
+      formAdicionar.querySelector("button[type='submit']").disabled = false;
     }, 1250);
   });
+
   const closeModalButton = document.getElementById("closeModalButton");
   closeModalButton.addEventListener("click", function () {
     window.location.reload();
@@ -51,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const sortearTimesForm = document.getElementById("sortearTimesForm");
   sortearTimesForm.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    sortearTimesForm.querySelector("button[type='submit']").disabled = true;
 
     const numberOfTeams = document.getElementById("numberOfTeams").value;
 
@@ -74,39 +83,41 @@ document.addEventListener("DOMContentLoaded", function () {
       data.times.forEach((time, index) => {
         const listItem = document.createElement("li");
         listItem.className = "list-group-item";
-        
+
         // Ordena os jogadores com base no nível (do maior para o menor)
         time.sort((a, b) => b.nivel - a.nivel);
-      
+
         // Cria um parágrafo para cada jogador e adiciona ao item da lista
         time.forEach((jogador) => {
           const playerParagraph = document.createElement("p");
           playerParagraph.textContent = jogador.nome;
           listItem.appendChild(playerParagraph);
         });
-        
+
         // Define o título do time
         const title = document.createElement("h4");
         title.textContent = `Time ${index + 1}:`;
         listItem.insertBefore(title, listItem.firstChild);
-        
+
         timesList.appendChild(listItem);
       });
 
-      const compartilharTimesBtn = document.getElementById("compartilharTimesBtn");
+      const compartilharTimesBtn = document.getElementById(
+        "compartilharTimesBtn"
+      );
       compartilharTimesBtn.addEventListener("click", function () {
         // Captura o conteúdo do modal
         html2canvas(document.getElementById("timesSorteadosModal"), {
-            onrendered: function (canvas) {
-                // Cria uma URL da imagem capturada
-                const imgData = canvas.toDataURL("image/png");
+          onrendered: function (canvas) {
+            // Cria uma URL da imagem capturada
+            const imgData = canvas.toDataURL("image/png");
 
-                // Cria um link para download da imagem
-                const link = document.createElement("a");
-                link.href = imgData;
-                link.download = "times_sorteados.png";
-                link.click();
-            }
+            // Cria um link para download da imagem
+            const link = document.createElement("a");
+            link.href = imgData;
+            link.download = "times_sorteados.png";
+            link.click();
+          },
         });
       });
       // Abre o modal com os times sorteados
@@ -118,6 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const errorData = await response.json();
       alert(errorData.error); // Exibe a mensagem de erro retornada pelo servidor
     }
+
+    sortearTimesForm.querySelector("button[type='submit']").disabled = false;
   });
 
   // Evento de clique para fechar o modal
@@ -147,7 +160,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         const row = playersTable.insertRow();
         const cell = row.insertCell();
         cell.colSpan = 3;
-        cell.textContent = "Clique em 'Adicionar Jogador' para colocar jogadores na lista.";
+        cell.textContent =
+          "Clique em 'Adicionar Jogador' para colocar jogadores na lista.";
       } else {
         playersData.forEach((jogador) => {
           const row = playersTable.insertRow();

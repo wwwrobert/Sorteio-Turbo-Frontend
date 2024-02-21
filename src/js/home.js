@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
   formTreino.addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    formTreino.querySelector("button[type='submit']").disabled = true;
+
     const nomeTreino = document.getElementById("nomeTreino").value;
     const diaTreino = document.getElementById("diaTreino").value;
     const horaTreino = document.getElementById("horaTreino").value;
@@ -50,5 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       responseMessageTreino.innerHTML =
         "<p>Erro ao criar treino. Tente novamente.</p>";
     }
+    
+    formTreino.querySelector("button[type='submit']").disabled = false;
   });
 });
