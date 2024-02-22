@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const playerParagraph = document.createElement("p");
           playerParagraph.textContent = jogador.nome;
           playerParagraph.style.marginBottom = "0.1rem";
+          playerParagraph.className = "player-name";
           listItem.appendChild(playerParagraph);
         });
 
