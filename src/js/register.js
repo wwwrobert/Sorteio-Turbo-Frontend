@@ -55,8 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("userId", userId);
         localStorage.setItem("expiresIn", expiresIn);
 
-        // Redirecionar para a página home.html com o parâmetro userId
-        window.location.href = `home.html?userId=${userId}`;
+        window.location.href = `home.html`;
       }
     }, displayTime);
   });

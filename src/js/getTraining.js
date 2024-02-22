@@ -1,10 +1,9 @@
 import { Url } from "./configs/config.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
-    const urlParams = new URLSearchParams(window.location.search);
     const treinosList = document.getElementById("treinos-list");
-    const userId = urlParams.get("userId");
     const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
 
     if (!userId || !token) {
         window.location.href = "index.html";

@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       localStorage.setItem("expiresIn", expiresIn);
 
       // Redirecionar para a página home.html com o parâmetro userId
-      window.location.href = `home.html?userId=${userId}`;
+      window.location.href = `home.html`;
     } else {
       responseMessage.innerHTML = `<p>${data.msg}</p>`;
 

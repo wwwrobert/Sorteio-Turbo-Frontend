@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const responseMessageTreino = document.getElementById(
     "responseMessageAdicionar"
   );
-  const userId = new URLSearchParams(window.location.search).get("userId");
+  const userId = localStorage.getItem('userId');
   const token = localStorage.getItem("token");
 
   if (!userId || !token) {
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const btnView = document.getElementById("btn-view");
   btnView.addEventListener("click", function () {
-    window.location.href = `getTraining.html?userId=${userId}`;
+    window.location.href = `getTraining.html`;
   });
 
   formTreino.addEventListener("submit", async function (e) {
