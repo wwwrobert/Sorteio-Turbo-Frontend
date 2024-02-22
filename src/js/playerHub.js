@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
 
   if (!treinoId || !token) {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   }
 
   formAdicionar.addEventListener("submit", async function (e) {

@@ -25,10 +25,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (data.token) {
       const userId = data.userId;
+      const expiresIn = data.expiresIn;
 
       // Armazenar o token no localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", userId);
+      localStorage.setItem("expiresIn", expiresIn);
 
       // Redirecionar para a página home.html com o parâmetro userId
       window.location.href = `home.html?userId=${userId}`;
