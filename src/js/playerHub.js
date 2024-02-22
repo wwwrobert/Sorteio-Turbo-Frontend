@@ -91,12 +91,14 @@ document.addEventListener("DOMContentLoaded", function () {
         time.forEach((jogador) => {
           const playerParagraph = document.createElement("p");
           playerParagraph.textContent = jogador.nome;
+          playerParagraph.style.marginBottom = "0.1rem";
           listItem.appendChild(playerParagraph);
         });
 
         // Define o título do time
         const title = document.createElement("h4");
         title.textContent = `Time ${index + 1}:`;
+        title.classList.add("team-title");
         listItem.insertBefore(title, listItem.firstChild);
 
         timesList.appendChild(listItem);
