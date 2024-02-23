@@ -26,10 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const diaTreino = document.getElementById("diaTreino").value;
     const horaTreino = document.getElementById("horaTreino").value;
 
-    const response = await fetch(`${Url}/auth/treino/${userId}`, {
+    const response = await fetch(`${Url}/auth/treino`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         nome: nomeTreino,
