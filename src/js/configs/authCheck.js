@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentTime = Math.floor(Date.now() / 1000);
       if (expiresIn > currentTime) {
           // Se o token ainda é válido, redirecione para a página home.html
-          window.location.href = `home.html?userId=${userId}`;
+          window.location.href = `home.html`;
       } else {
           // Se o token expirou, limpe o localStorage e redirecione para a página de login
           localStorage.clear();
