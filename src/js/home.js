@@ -1,6 +1,6 @@
 import { Url } from "./configs/config.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const formTreino = document.getElementById("criarTreinoForm");
   const responseMessageTreino = document.getElementById(
     "responseMessageAdicionar"
@@ -9,6 +9,35 @@ document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
 
   if (!userId || !token) {
+    window.location.href = "index.html";
+  }
+  try {
+    const response = await fetch(`${Url}/auth/getToken`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ userId })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const tokenFromBackend = data.token;
+
+      // Comparar o token do localStorage com o token do backend
+      if (token === tokenFromBackend) {
+        console.log("O token do localStorage corresponde ao token do backend. Usuário autenticado.");
+      } else {
+        console.log("O token do localStorage não corresponde ao token do backend. Redirecionando para a página de login.");
+        window.location.href = "index.html";
+      }
+    } else {
+      console.log("Erro ao obter o token do backend. Redirecionando para a página de login.");
+      window.location.href = "index.html";
+    }
+  } catch (error) {
+    console.error("Erro ao fazer a solicitação para obter o token do backend:", error);
     window.location.href = "index.html";
   }
 
@@ -46,8 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       setTimeout(() => {
         responseMessageTreino.innerHTML = "";
-
-        window.location.href = `playerHub.html?treinoId=${data.treinoId}`;
+        
+        localStorage.setItem("treinoId", data.treinoId);
+        window.location.href = `playerHub.html`;
       }, 2000);
     } else {
       responseMessageTreino.innerHTML =

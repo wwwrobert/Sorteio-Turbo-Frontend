@@ -2,11 +2,9 @@ import { Url } from "./configs/config.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const formAdicionar = document.getElementById("adicionarJogadorForm");
-  const responseMessageAdicionar = document.getElementById(
-    "responseMessageAdicionar"
-  );
-  const params = new URLSearchParams(window.location.search);
-  const treinoId = params.get("treinoId");
+  const responseMessageAdicionar = document.getElementById("responseMessageAdicionar");
+  const treinoId = localStorage.getItem('treinoId');
+  console.log(treinoId);
   const token = localStorage.getItem("token");
 
   if (!treinoId || !token) {
@@ -148,8 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Buscar Jogadores ================================================================
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const treinoId = urlParams.get("treinoId");
+  const treinoId = localStorage.getItem('treinoId');
   const playersTable = document.querySelector(".players-table tbody");
 
   const loadPlayers = async () => {

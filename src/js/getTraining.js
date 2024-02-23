@@ -60,7 +60,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         viewPlayersButtons.forEach(button => {
             button.addEventListener("click", function() {
                 const treinoId = this.getAttribute("data-treino-id");
-                window.location.href = `playerHub.html?treinoId=${treinoId}`;
+                localStorage.setItem("treinoId", treinoId);
+                window.location.href = `playerHub.html`;
             });
         });
         
