@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   formCadastro.addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    formCadastro.querySelector("button[type='submit']").disabled = true;
+
     const email = document.getElementById("registerEmail").value;
     const password = document.getElementById("registerPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
@@ -58,5 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = `home.html`;
       }
     }, displayTime);
+
+    formCadastro.querySelector("button[type='submit']").disabled = false;
   });
 });

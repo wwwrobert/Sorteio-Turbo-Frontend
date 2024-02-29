@@ -10,7 +10,43 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     try {
-        const response = await fetch(`${Url}/auth/getTraining/${userId}`); 
+        const response = await fetch(`${Url}/auth/getToken`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({ userId })
+        });
+    
+        if (response.ok) {
+          const data = await response.json();
+          const tokenFromBackend = data.token;
+    
+          // Comparar o token do localStorage com o token do backend
+          if (token === tokenFromBackend) {
+            console.log("O token do localStorage corresponde ao token do backend. Usuário autenticado.");
+          } else {
+            console.log("O token do localStorage não corresponde ao token do backend. Redirecionando para a página de login.");
+            window.location.href = "index.html";
+          }
+        } else {
+          console.log("Erro ao obter o token do backend. Redirecionando para a página de login.");
+          window.location.href = "index.html";
+        }
+      } catch (error) {
+        console.error("Erro ao fazer a solicitação para obter o token do backend:", error);
+        window.location.href = "index.html";
+    }
+
+    try {
+        const response = await fetch(`${Url}/auth/getTraining`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            }
+        }); 
         const data = await response.json();
 
         data.forEach((treinos, index) => {
@@ -34,15 +70,23 @@ document.addEventListener("DOMContentLoaded", async function () {
                 try {
                     // Excluir todos os jogadores associados ao treino
                     const deletePlayersResponse = await fetch(`${Url}/auth/deletePlayers/${treinoId}`, {
-                        method: "DELETE"
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        }
                     });
                     if (!deletePlayersResponse.ok) {
                         console.error("Erro ao excluir jogadores:", deletePlayersResponse.statusText);
                     }
 
                     // Excluir o treino
-                    const deleteTreinoResponse = await fetch(`${Url}/auth/deleteTreino/${treinoId}/${userId}`, {
-                        method: "DELETE"
+                    const deleteTreinoResponse = await fetch(`${Url}/auth/deleteTreino/${treinoId}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        }
                     });
                     if (deleteTreinoResponse.ok) {
                         // Remove a linha da tabela
